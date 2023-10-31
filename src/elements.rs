@@ -38,8 +38,8 @@ pub fn crop(image: &[u32], sprite: (usize, usize)) -> Vec<u32> {
 
     let mut dest = vec![];
     for i in 0..s_height {
-        let start = (i + y) * width + (x * s_width);
-        let end = (i + y) * width + ((x + 1) * s_width);
+        let start = (i + y) * (width/s_width) + (x * s_width);
+        let end = (i + y) * (width/s_width) + ((x + 1) * s_width);
         dest.extend_from_slice(&image[start..end]);
     }
 
