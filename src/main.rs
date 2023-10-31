@@ -7,7 +7,7 @@ mod elements;
 
 fn main() {
     let mut buffer = [0; 640*640];
-    let mut sprites = get_sprites();
+    let sprites = get_sprites();
     let mut window = Window::new(
         "Test - ESC to exit",
         640,
@@ -21,7 +21,7 @@ fn main() {
     while window.is_open() && !window.is_key_down(Key::Escape) {
         for i in 0..16{
             for j in 0..16{
-                buffer[j*640 + i] = sprites["pacman_right_1"][j*16+i];
+                buffer[i*640 + j] = sprites["pacman_right_1"][i*16+j];
             }
         }
         
