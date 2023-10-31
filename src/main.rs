@@ -6,10 +6,11 @@ fn main() {
     let decoder = png::Decoder::new(File::open("textures/assets.png").unwrap());
     let mut reader = decoder.read_info().unwrap();
     let mut buffer = vec![0; reader.output_buffer_size()];
-    reader.next_frame(&mut buffer).unwrap();
+    let info = reader.next_frame(&mut buffer).unwrap();
+    println!("{:?}", info); 
     let u32_buffer: Vec<u32> = buffer
-        .chunks_exact(3)
-        .map(|v| ((v[2] as u32) << 16 | (v[1] as u32) << 8 | v[0] as u32))
+        .chunks_exact(4)
+        .map(|v| ((v[2] as u32) << 24 | (v[1] as u32) << 16 | v[0] as u32) << 8 | v[3] as u32)
         .collect();
     let mut window = Window::new(
         "assets",
