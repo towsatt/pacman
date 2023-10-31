@@ -19,7 +19,7 @@ pub fn get_sprites() -> HashMap<String, Vec<u32>> {
         for x in 0..2 {
             helper(
                 format!(
-                    "pacman_{:?}_{:?}",
+                    "pacman_{}_{}",
                     ["right", "left", "up", "down"][direction],
                     x + 1
                 ),
