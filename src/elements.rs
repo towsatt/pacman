@@ -32,13 +32,14 @@ pub fn get_sprites() -> HashMap<String, Vec<u32>> {
 }
 
 pub fn crop(image: &[u32], sprite: (usize, usize)) -> Vec<u32> {
-    let (width, height) = (16, 16);
+    let (width, height) = (224, 128);
+    let (s_width, s_height) = (16, 16);
     let (x, y) = sprite;
 
     let mut dest = vec![];
     for i in 0..height {
-        let start = (i + y) * height + (x * width);
-        let end = (i + y + 1) * height + ((x + 1) * width);
+        let start = (i + y) * height + (x * s_width);
+        let end = (i + y) * height + ((x + 1) * s_width);
         dest.extend_from_slice(&image[start..end]);
     }
 
